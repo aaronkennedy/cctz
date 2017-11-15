@@ -141,10 +141,12 @@ std::string TimeZoneLibC::Description() const {
 }
 
 bool TimeZoneLibC::NextTransition(time_point<sys_seconds>* tp) const {
+  (void)tp;
   return false;
 }
 
 bool TimeZoneLibC::PrevTransition(time_point<sys_seconds>* tp) const {
+  (void)tp;
   return false;
 }
 

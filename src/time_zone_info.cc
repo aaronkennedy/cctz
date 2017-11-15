@@ -821,7 +821,7 @@ bool TimeZoneInfo::NextTransition(time_point<sys_seconds>* tp) const {
     ++begin;
   }
   std::int_fast64_t unix_time = ToUnixSeconds(*tp);
-  const Transition target = { unix_time };
+  const Transition target = { unix_time, 0, civil_second(), civil_second() };
   const Transition* tr = std::upper_bound(begin, end, target,
                                           Transition::ByUnixTime());
   if (tr != begin) {  // skip no-op transitions
@@ -853,7 +853,7 @@ bool TimeZoneInfo::PrevTransition(time_point<sys_seconds>* tp) const {
     }
     unix_time += 1;  // ceils
   }
-  const Transition target = { unix_time };
+  const Transition target = { unix_time, 0, civil_second(), civil_second() };
   const Transition* tr = std::lower_bound(begin, end, target,
                                           Transition::ByUnixTime());
   if (tr != begin) {  // skip no-op transitions
